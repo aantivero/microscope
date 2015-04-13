@@ -18,10 +18,10 @@ Template.postSubmit.events({
             //show this result but route anyway
             if (result.postExists)
                 alert('This link has already been posted');
-
-            //Router.go('postPage', {_id: result._id});
+            //remove when test compensation
+            Router.go('postPage', {_id: result._id});
         });
-
-        Router.go('postsList');
+        //test compensation
+        //Router.go('postsList');
     }
 });
