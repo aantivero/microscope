@@ -3,7 +3,7 @@
  * Manipula post_edit.html
  */
 Template.postEdit.events({
-   'function form': function (e) {
+   'submit form': function (e) {
        e.preventDefault();
 
        var currentPostId = this._id;
@@ -12,6 +12,8 @@ Template.postEdit.events({
            url: $(e.target).find('[name=url]').val(),
            title: $(e.target).find('[name=title]').val()
        }
+
+       console.log("ACtualizado :" + postProperties);
 
        Posts.update(currentPostId, {$set: postProperties}, function (error) {
           if (error) {
