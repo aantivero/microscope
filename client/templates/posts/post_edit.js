@@ -13,8 +13,14 @@ Template.postEdit.events({
            title: $(e.target).find('[name=title]').val()
        }
 
-       console.log("ACtualizado :" + postProperties);
+       //chequeo url duplicada. se puede pasar a un método
+       var postWithSameLink = Posts.findOne({url: postProperties.url});
+       if (postWithSameLink) {
+           alert('This link has already been posted');
+           return Router.go('postPage', {_id: currentPostId});
+       }
 
+       console.log("llama al update");
        Posts.update(currentPostId, {$set: postProperties}, function (error) {
           if (error) {
               //display the error
