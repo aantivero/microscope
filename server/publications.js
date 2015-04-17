@@ -5,6 +5,10 @@ Meteor.publish('posts', function () {
     return Posts.find();
 });
 //se publica comentarios
-Meteor.publish('comments', function () {
+/**Meteor.publish('comments', function () {
     return Comments.find();
+});*/
+//limitar el conjunto de datos a los comentarios que pertenecen al post actual
+Meteor.publish('comments', function (postId) {
+    return Comments.find({postId: postId});
 });
