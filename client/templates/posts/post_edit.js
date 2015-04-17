@@ -33,7 +33,7 @@ Template.postEdit.events({
        //chequeo url duplicada. se puede pasar a un método
        var postWithSameLink = Posts.findOne({url: postProperties.url});
        if (postWithSameLink) {
-           throwError('This link has already been posted');
+           Errors.throw('This link has already been posted');
            return Router.go('postPage', {_id: currentPostId});
        }
 
@@ -41,7 +41,7 @@ Template.postEdit.events({
        Posts.update(currentPostId, {$set: postProperties}, function (error) {
           if (error) {
               //display the error
-              throwError(error.reason);
+              Errors.throw(error.reason);
           } else {
               Router.go('postPage', {_id: currentPostId});
           }
@@ -51,8 +51,14 @@ Template.postEdit.events({
         e.preventDefault();
         if (confirm("Delete this post?")) {
             var currentPostId = this._id;
-            Posts.remove(currentPostId);
-            Router.go('postsList');
+            Posts.remove(currentPostId, function (error) {
+                if (error) {
+                    Errors.throw(error.reason);
+                } else {
+                    Router.go('postsList');
+                }
+            });
+
         }
     }
 });
