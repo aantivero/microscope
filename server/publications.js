@@ -14,5 +14,6 @@ Meteor.publish('comments', function (postId) {
 });
 //publicar las notificaciones
 Meteor.publish('notifications', function () {
-    return Notifications.find();
+    //evitar los problemas de privacidad de las notificaciones
+    return Notifications.find({userId: this.userId, read: false});
 })
