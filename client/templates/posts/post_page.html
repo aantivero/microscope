@@ -5,4 +5,10 @@
             {{> commentItem}}
         {{/each}}
     </ul>
+    <!-- zona para envio de comentarios-->
+    {{#if currentUser}}
+        {{> commentSubmit}}
+    {{else}}
+        <p>Please log in to leave a comment.</p>
+    {{/if}}
 </template>
