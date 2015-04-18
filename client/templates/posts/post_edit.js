@@ -31,7 +31,7 @@ Template.postEdit.events({
        }
 
        //chequeo url duplicada. se puede pasar a un método
-       var postWithSameLink = Posts.findOne({url: postProperties.url});
+       var postWithSameLink = Posts.findOne({url: postProperties.url, _id: {$ne: currentPostId}});
        if (postWithSameLink) {
            Errors.throw('This link has already been posted');
            return Router.go('postPage', {_id: currentPostId});
