@@ -57,4 +57,15 @@ if (Posts.find().count() === 0) {
         submitted: new Date(now - 12 * 3600 * 1000),
         commentsCount: 0
     });
+    //posts para la paginacion
+    for (var i = 0; i < 10; i++) {
+        Posts.insert({
+            title: 'Test post #' + i,
+            userId: sacha._id,
+            author: sacha.profile.name,
+            url: 'http://google.com/?q=test-' + i,
+            submitted: new Date(now - i * 3600 * 1000),
+            commentsCount: 0
+        });
+    }
 }
