@@ -8,6 +8,11 @@ Meteor.publish('posts', function (options) {
     });
     return Posts.find({}, options);
 });
+//nueva publicación para un solo post identificado por _id
+Meteor.publish('singlePost', function (id) {
+   check(id, String);
+    return Posts.find(id);
+});
 /**
  * el patron mas seguro para la publicacion de posts
  * Meteor.publish('posts', function (sort, limit) {
