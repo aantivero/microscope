@@ -55,7 +55,7 @@ Template.postEdit.events({
                 if (error) {
                     Errors.throw(error.reason);
                 } else {
-                    Router.go('postsList');
+                    Router.go('home');
                 }
             });
 
